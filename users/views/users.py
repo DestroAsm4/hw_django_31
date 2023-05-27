@@ -12,7 +12,7 @@ TOTAL_ON_PAGE = 10
 
 class UserListView(ListAPIView):
     queryset = User.objects.prefetch_related('locations').annotate(
-        total_ads=Count('ad', filter=Q(ad__is_published=True))).order_by('username')
+        total_ads=Count('ad', filter=Q(ad__is_published=True)))
     serializer_class = UserListSerializer
 
 
@@ -21,7 +21,7 @@ class UserListView(ListAPIView):
 
 class UserDetailView(RetrieveAPIView):
     queryset = User.objects.all()
-    serializer_class = UserListSerializer
+    serializer_class = UserSerializer
 
 
 class UserCreateView(CreateAPIView):

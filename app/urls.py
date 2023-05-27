@@ -17,6 +17,7 @@ Including another URLconf
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 from app import settings
 
@@ -24,8 +25,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('cat/', include('ads.urls.category')),
     path('ads/', include('ads.urls.ads')),
+    path('selection/', include('ads.urls.selection')),
     path('users/', include('users.urls.users')),
     path('location/', include('users.urls.location')),
+
 ]
 
 if settings.DEBUG:

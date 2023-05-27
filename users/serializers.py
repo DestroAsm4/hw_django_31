@@ -20,31 +20,16 @@ class UserListSerializer(ModelSerializer):
 
 class UserCreateUpdateSerializer(ModelSerializer):
 
-    location = SlugRelatedField(slug_field='name', many=True, queryset=Location.objects.all())
+    locations = SlugRelatedField(slug_field='name', many=True, queryset=Location.objects.all(), required=False)
 
     def is_valid(self, *, raise_exception=False):
-        self._locations = self.initial_data.data.get('locations', [])
 
-        for loc_name in self._locations:
+
+        for loc_name in self.initial_data.get('locations', []):
             loc, _ = Location.objects.get_or_create(name=loc_name)
 
         return super().is_valid(raise_exception=raise_exception)
 
-    # def create(self, validated_data):
-    #     new_user = User.objects.create(**validated_data)
-    #
-    #     for loc_name in self._locations:
-    #         loc, _ = Location.objects.get_or_create(name=loc_name)
-    #         new_user.locations.add(loc)
-    #     return new_user
-    #
-    # def update(self, instance, validated_data):
-    #     if self._locations:
-    #         instance.locations.clear()
-    #         for loc_name in self._locations:
-    #             loc, _ = Location.objects.get_or_create(name=loc_name)
-    #             instance.locations.add(loc)
-    #     return instance
 
     class Meta:
         model = User
