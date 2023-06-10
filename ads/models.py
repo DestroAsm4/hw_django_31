@@ -1,3 +1,4 @@
+from django.core.validators import MinLengthValidator
 from django.db import models
 import csv
 
@@ -6,12 +7,12 @@ from users.models import User
 
 class Ad(models.Model):
 
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, validators=[MinLengthValidator(2)])
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    price = models.IntegerField()
-    description = models.TextField()
+    price = models.PositiveIntegerField()
+    description = models.TextField(null=True, blank=True)
     category = models.ForeignKey('ads.Categories', on_delete=models.CASCADE)
-    is_published = models.BooleanField()
+    is_published = models.BooleanField(default=False)
     image = models.ImageField(upload_to='ad_image', blank=True, null=True)
 
 
@@ -39,6 +40,12 @@ class Selection(models.Model):
 class Categories(models.Model):
 
     name = models.CharField(max_length=30)
+    slug = models.SlugField(
+        max_length=10,
+        validators=[MinLengthValidator(5)],
+        unique=True
+    )
+
 
     def serialize(self):
         return {

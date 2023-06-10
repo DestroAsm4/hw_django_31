@@ -20,7 +20,8 @@ class UserListSerializer(ModelSerializer):
 
 class UserCreateUpdateSerializer(ModelSerializer):
 
-    locations = SlugRelatedField(slug_field='name', many=True, queryset=Location.objects.all(), required=False)
+    locations = SlugRelatedField(slug_field='name', many=True,
+                                 queryset=Location.objects.all(), required=False)
 
     def is_valid(self, *, raise_exception=False):
 

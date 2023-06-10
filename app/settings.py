@@ -149,3 +149,6 @@ AUTH_USER_MODEL = "users.User"
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': datetime.timedelta(days=10)
 }
+
+MIN_AGE_REQUIRED = 9
+FORBIDDEN_DOMAIN = 'rambler.ru'

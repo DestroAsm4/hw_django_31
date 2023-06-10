@@ -5,8 +5,7 @@ from rest_framework.viewsets import ModelViewSet
 
 from ads.models import Ad
 from ads.permissions import IsOwner, IsStaff
-from ads.serializers import AdListSerializer, AdSerializer, AdDetailSerializer
-
+from ads.serializers import AdListSerializer, AdSerializer, AdDetailSerializer, AdCreateSerializer
 
 TOTAL_ON_PAGE = 10
 
@@ -17,6 +16,7 @@ class AdViewSet(ModelViewSet):
     serializers = {
         'list': AdListSerializer,
         'retrieve': AdDetailSerializer,
+        'create': AdCreateSerializer,
     }
     default_serializer = AdSerializer
 

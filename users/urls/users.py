@@ -1,9 +1,9 @@
 from django.contrib import admin
 from django.urls import path
+from rest_framework import routers
 from rest_framework_simplejwt.views import TokenRefreshView, TokenObtainPairView
 
 from users.views.users import *
-
 urlpatterns = [
 
     path('', UserListView.as_view()),

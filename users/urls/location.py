@@ -4,9 +4,6 @@ from rest_framework import routers
 from users.views.location import *
 
 router = routers.SimpleRouter()
-router.register(
-    '',
-    LocationViewSet
-)
+router.register('', LocationViewSet)
 urlpatterns = router.urls
 

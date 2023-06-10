@@ -5,10 +5,7 @@ from rest_framework import routers
 from ads.views.ads import *
 
 router = routers.SimpleRouter()
-router.register(
-    '',
-    AdViewSet
-)
+router.register('', AdViewSet)
 urlpatterns = router.urls
 
 

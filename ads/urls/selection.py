@@ -4,8 +4,5 @@ from ads.views.ads import *
 from ads.views.selection import SelectionViewSet
 
 router = routers.SimpleRouter()
-router.register(
-    '',
-    SelectionViewSet
-)
+router.register('', SelectionViewSet)
 urlpatterns = router.urls

@@ -1,7 +1,9 @@
 
 from django.db.models import Count, Q
+from django.http import JsonResponse
 from rest_framework.generics import  ListAPIView, RetrieveAPIView, DestroyAPIView, UpdateAPIView, \
     CreateAPIView
+from rest_framework.viewsets import ModelViewSet
 
 from users.models import User
 from users.serializers import UserSerializer, UserListSerializer, UserCreateUpdateSerializer
@@ -37,3 +39,4 @@ class UserUpdateView(UpdateAPIView):
 class UserDeleteView(DestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
